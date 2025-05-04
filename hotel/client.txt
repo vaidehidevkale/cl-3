@@ -1,0 +1,50 @@
+import java.rmi.Naming;
+import java.util.Scanner;
+
+public class HotelClient {
+    public static void main(String[] args) {
+        try {
+            HotelInterface hotel = (HotelInterface) Naming.lookup("rmi://localhost/HotelService");
+            Scanner scanner = new Scanner(System.in);
+            int choice;
+
+            do {
+                System.out.println("\n=== Hotel Booking System ===");
+                System.out.println("1. Book a Room");
+                System.out.println("2. Cancel Booking");
+                System.out.println("3. Exit");
+                System.out.print("Enter your choice: ");
+                choice = scanner.nextInt();
+                scanner.nextLine(); // consume newline
+
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter guest name to book: ");
+                        String nameToBook = scanner.nextLine();
+                        System.out.println(hotel.bookRoom(nameToBook));
+                        break;
+
+                    case 2:
+                        System.out.print("Enter guest name to cancel: ");
+                        String nameToCancel = scanner.nextLine();
+                        System.out.println(hotel.cancelBooking(nameToCancel));
+                        break;
+
+                    case 3:
+                        System.out.println("Exiting... Goodbye!");
+                        break;
+
+                    default:
+                        System.out.println("Invalid choice.");
+                }
+
+            } while (choice != 3);
+
+            scanner.close();
+
+        } catch (Exception e) {
+            System.out.println("Client Exception: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}

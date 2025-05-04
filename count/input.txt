@@ -1,0 +1,3 @@
+hello hadoop
+mapreduce is fun
+hello world

@@ -1,0 +1,21 @@
+start-dfs.cmd------\
+                    | -> or        start-all.cmd  
+start-yarn.cmd-----/
+
+cd filepath(navigate to where you have downloaded the progs preferably on desktop by creating a new folder)
+
+hdfs dfs -mkdir /filename_to_create_on_hadoopenv(no extension)
+
+
+hdfs dfs -put text.txt(name with extension any txt file or csv file) /filename_to_create_on_hadoopenv
+
+Hadoop classpath
+(copy whatever the classpath cmd returns)
+
+javac -classpath "(copy whatever the classpath cmd returns)" -d . java1.java(name with extention any java files you want to put in the sys)
+
+jar -cvf java1.jar(same name of the java file you put but with .jar extension) *.class
+
+hadoop jar java1.jar java1(javafile name without any extension) /filename_to_create_on_hadoopenv /outputfilename(no extension)
+
+hdfs dfs -cat /outputfilename/part-r-00000
